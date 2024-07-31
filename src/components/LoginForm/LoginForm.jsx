@@ -9,8 +9,12 @@ const initialValues = {
 };
 
 const validationInputSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email address").required("Required"),
+  email: Yup.string()
+    .trim()
+    .email("Invalid email address")
+    .required("Required"),
   password: Yup.string()
+    .trim()
     .required("Required")
     .min(8, "Password must be at least 8 characters long")
     .matches(/[a-z]/, "Password must contain at least one lowercase letter")
@@ -44,7 +48,7 @@ const LoginForm = () => {
       >
         <Form>
           <div>
-            <label htmlFor={emeilId}>Email</label>
+            <label htmlFor={emeilId}>Email: </label>
             <Field
               type="email"
               name="email"
@@ -54,7 +58,7 @@ const LoginForm = () => {
             <ErrorMessage name="email" component="span" />
           </div>
           <div>
-            <label htmlFor={passwordId}>Password</label>
+            <label htmlFor={passwordId}>Password: </label>
             <Field
               type="password"
               name="password"
