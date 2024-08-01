@@ -2,6 +2,8 @@ import { Field, Formik, Form } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import css from "./RegistrationForm.module.css";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 
 const initialValues = {
   name: "",
@@ -40,10 +42,13 @@ const RegistrationForm = () => {
   const emailId = useId();
   const passwordId = useId();
   const confirmPasswordId = useId();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values);
-    setSubmitting(false);
+  const handleSubmit = (values, action) => {
+    const { name, email, password } = values;
+    dispatch(register({ name, email, password }));
+    action.setSubmitting(false);
+    action.resetForm();
   };
 
   return (

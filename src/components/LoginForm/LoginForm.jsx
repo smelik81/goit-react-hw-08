@@ -1,7 +1,8 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { useId } from "react";
-/* import { useDispatch } from "react-redux"; */
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { logIn } from "../../redux/auth/operations";
 
 const initialValues = {
   email: "",
@@ -29,14 +30,13 @@ const validationInputSchema = Yup.object().shape({
 const LoginForm = () => {
   const emeilId = useId();
   const passwordId = useId();
-  /*  const dispatch = useDispatch(); */
+  const dispatch = useDispatch();
 
-  /* const handleSubmit = (values, action) => {
+  const handleSubmit = (values, action) => {
     dispatch(logIn(values));
+    action.setSubmitting(false);
     action.resetForm();
-  }; */
-
-  const handleSubmit = () => {};
+  };
 
   return (
     <div>
