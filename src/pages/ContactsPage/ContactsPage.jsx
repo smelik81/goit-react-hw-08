@@ -11,6 +11,7 @@ import ContactFilter from "../../components/ContactFilter/ContactFilter";
 import ContactList from "../../components/ContactList/ContactList";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import Spiner from "../../components/Spiner/Spiner";
+import css from "./ContactsPage.module.css";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,11 @@ const ContactsPage = () => {
     <>
       {isLoading && <Spiner />}
       {!isLoading && (
-        <div className="content">
-          <ContactForm />
-          <ContactFilter />
+        <div className={css.content}>
+          <div className={css.wrapperContactFormFilter}>
+            <ContactForm />
+            <ContactFilter />
+          </div>
           {contacts.length > 0 && <ContactList />}
         </div>
       )}

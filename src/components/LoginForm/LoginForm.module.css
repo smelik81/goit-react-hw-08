@@ -3,10 +3,12 @@
   width: 350px;
   padding: 15px;
   background-color: #eedec936;
+  margin: 0 auto;
 }
 
 .title {
   margin: 20px auto;
+  color: #f7002f;
 }
 
 .inputForm {

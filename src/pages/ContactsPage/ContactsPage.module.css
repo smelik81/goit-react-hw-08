@@ -1,0 +1,14 @@
+.content {
+  background-color: aliceblue;
+  border: dashed;
+  padding: 6px;
+  display: flex;
+  margin-top: 130px;
+}
+
+.wrapperContactFormFilter {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 230px;
+}
