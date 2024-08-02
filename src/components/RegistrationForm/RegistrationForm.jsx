@@ -52,8 +52,8 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
-      <h2>Registration on Your App</h2>
+    <div className={css.wrapper}>
+      <h2 className={css.title}>Registration on Your App</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationInputSchema}
@@ -61,9 +61,15 @@ const RegistrationForm = () => {
       >
         {({ isSubmitting, errors, touched }) => (
           <Form>
-            <div>
+            <div className={css.inputFormRegistration}>
               <label htmlFor={nameId}>Name: </label>
-              <Field type="text" name="name" id={nameId} autoComplete="name" />
+              <Field
+                type="text"
+                name="name"
+                id={nameId}
+                autoComplete="name"
+                className={css.input}
+              />
               {touched.name && errors.name ? (
                 <div className={`${css.message} ${css.error}`}>
                   {errors.name}
@@ -76,13 +82,14 @@ const RegistrationForm = () => {
                 )
               )}
             </div>
-            <div>
+            <div className={css.inputFormRegistration}>
               <label htmlFor={emailId}>Email: </label>
               <Field
                 type="email"
                 name="email"
                 id={emailId}
                 autoComplete="email"
+                className={css.input}
               />
               {touched.email && errors.email ? (
                 <div className={`${css.message} ${css.error}`}>
@@ -96,13 +103,14 @@ const RegistrationForm = () => {
                 )
               )}
             </div>
-            <div>
+            <div className={css.inputFormRegistration}>
               <label htmlFor={passwordId}>Password: </label>
               <Field
                 type="password"
                 name="password"
                 id={passwordId}
                 autoComplete="password"
+                className={css.input}
               />
               {touched.password && errors.password ? (
                 <div className={`${css.message} ${css.error}`}>
@@ -116,13 +124,14 @@ const RegistrationForm = () => {
                 )
               )}
             </div>
-            <div>
+            <div className={css.inputFormRegistration}>
               <label htmlFor={confirmPasswordId}>Confirm Password: </label>
               <Field
                 type="password"
                 name="confirmPassword"
                 id={confirmPasswordId}
                 autoComplete="new-password"
+                className={css.input}
               />
               {touched.confirmPassword && errors.confirmPassword ? (
                 <div className={`${css.message} ${css.error}`}>
@@ -136,7 +145,11 @@ const RegistrationForm = () => {
                 )
               )}
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={css.btnRegistr}
+            >
               {isSubmitting ? "Submiting..." : "Submit"}
             </button>
           </Form>

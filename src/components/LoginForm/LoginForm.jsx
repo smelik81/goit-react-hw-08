@@ -3,6 +3,7 @@ import { useId } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { logIn } from "../../redux/auth/operations";
+import css from "./LoginForm.module.css";
 
 const initialValues = {
   email: "",
@@ -39,8 +40,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h2>Login in App</h2>
+    <div className={css.wrapper}>
+      <h2 className={css.title}>Login in App</h2>
       <Formik
         initialValues={initialValues}
         validationInputSchema={validationInputSchema}
@@ -48,26 +49,32 @@ const LoginForm = () => {
       >
         <Form>
           <div>
-            <label htmlFor={emeilId}>Email: </label>
-            <Field
-              type="email"
-              name="email"
-              id={emeilId}
-              autoComplete="email"
-            />
-            <ErrorMessage name="email" component="span" />
+            <div className={css.inputForm}>
+              <label htmlFor={emeilId}>Email: </label>
+              <Field
+                type="email"
+                name="email"
+                id={emeilId}
+                autoComplete="email"
+                className={css.input}
+              />
+              <ErrorMessage name="email" component="span" />
+            </div>
+            <div className={css.inputForm}>
+              <label htmlFor={passwordId}>Password: </label>
+              <Field
+                type="password"
+                name="password"
+                id={passwordId}
+                autoComplete="password"
+                className={css.input}
+              />
+              <ErrorMessage name="password" component="span" />
+            </div>
+            <button type="submit" className={css.btn}>
+              Log in
+            </button>
           </div>
-          <div>
-            <label htmlFor={passwordId}>Password: </label>
-            <Field
-              type="password"
-              name="password"
-              id={passwordId}
-              autoComplete="password"
-            />
-            <ErrorMessage name="password" component="span" />
-          </div>
-          <button type="submit">Log in</button>
         </Form>
       </Formik>
     </div>

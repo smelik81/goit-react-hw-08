@@ -1,0 +1,37 @@
+.wrapper {
+  border: 2px solid black;
+  width: 350px;
+  padding: 15px;
+  background-color: #eedec936;
+}
+
+.title {
+  margin: 20px auto;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input {
+  background-color: #c2bcbc8a;
+  width: 230px;
+  font-size: 20px;
+  padding: 8px;
+}
+
+label {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.btn {
+  background-color: #3534efcf;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+}
