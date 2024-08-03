@@ -1,4 +1,5 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
+import { toast } from "react-hot-toast";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
@@ -33,10 +34,16 @@ const LoginForm = () => {
   const passwordId = useId();
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, action) => {
-    dispatch(logIn(values));
-    action.setSubmitting(false);
-    action.resetForm();
+  const handleSubmit = async (values, action) => {
+    try {
+      await dispatch(logIn(values)).unwrap();
+      action.resetForm();
+    } catch (error) {
+      toast.error("Login failed. Please check your email and password.");
+      action.resetForm();
+    } finally {
+      action.setSubmitting(false);
+    }
   };
 
   return (
@@ -47,35 +54,49 @@ const LoginForm = () => {
         validationInputSchema={validationInputSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <div>
-            <div className={css.inputForm}>
-              <label htmlFor={emeilId}>Email: </label>
-              <Field
-                type="email"
-                name="email"
-                id={emeilId}
-                autoComplete="email"
-                className={css.input}
-              />
-              <ErrorMessage name="email" component="span" />
+        {({ isSubmitting, isValid, dirty }) => (
+          <Form>
+            <div>
+              <div className={css.inputForm}>
+                <label htmlFor={emeilId}>Email: </label>
+                <Field
+                  type="email"
+                  name="email"
+                  id={emeilId}
+                  autoComplete="email"
+                  className={css.input}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className={css.errorMessage}
+                />
+              </div>
+              <div className={css.inputForm}>
+                <label htmlFor={passwordId}>Password: </label>
+                <Field
+                  type="password"
+                  name="password"
+                  id={passwordId}
+                  autoComplete="password"
+                  className={css.input}
+                />
+                <ErrorMessage
+                  name="password"
+                  component="span"
+                  className={css.errorMessage}
+                />
+              </div>
+              <button
+                type="submit"
+                className={css.btn}
+                disabled={isSubmitting || !isValid || !dirty}
+              >
+                {isSubmitting ? "Loading ..." : "Log in"}
+              </button>
             </div>
-            <div className={css.inputForm}>
-              <label htmlFor={passwordId}>Password: </label>
-              <Field
-                type="password"
-                name="password"
-                id={passwordId}
-                autoComplete="password"
-                className={css.input}
-              />
-              <ErrorMessage name="password" component="span" />
-            </div>
-            <button type="submit" className={css.btn}>
-              Log in
-            </button>
-          </div>
-        </Form>
+          </Form>
+        )}
       </Formik>
     </div>
   );

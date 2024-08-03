@@ -1,0 +1,50 @@
+.container {
+  text-align: center;
+  display: block;
+}
+
+.titleHome,
+.titleApp {
+  font-size: 70px;
+  font-weight: 700;
+  margin: 0;
+  overflow: hidden;
+}
+
+.wrapperHome {
+  background-color: #204136;
+  width: auto;
+  display: block;
+  animation: marqueeHome 12s linear infinite;
+}
+
+.wrapperApp {
+  background-color: brown;
+  width: auto;
+  display: block;
+  animation: marqueeApp 12s linear infinite;
+}
+
+.titleMain {
+  color: #6307d3;
+  display: block;
+  padding-bottom: 125px;
+  font-size: 60px;
+}
+
+@keyframes marqueeHome {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes marqueeApp {
+  0% {
+    transform: translateX(-100%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(4deg);
+  }
+}

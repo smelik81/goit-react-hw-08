@@ -1,6 +1,6 @@
 .wrapper {
   border: 2px solid black;
-  width: 400px;
+  width: 500px;
   padding: 15px;
   background-color: #eedec936;
   margin: 0 auto;
@@ -19,6 +19,11 @@
   margin-bottom: 10px;
 }
 
+.labelRegistr {
+  font-weight: 800;
+  font-size: 17px;
+}
+
 .input {
   background-color: #c2bcbc8a;
   width: 230px;
@@ -31,4 +36,17 @@
   font-size: 17px;
   font-weight: 600;
   color: white;
+}
+
+.message {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.error {
+  color: #ff0101;
+}
+
+.required {
+  color: green;
 }

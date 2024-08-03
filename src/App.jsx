@@ -7,6 +7,8 @@ import { selectIsRefreshing } from "./redux/auth/selectors";
 import Layout from "./components/Layout/Layout";
 import RestrictedRoute from "./components/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute";
+import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from "react-hot-toast";
 const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -59,6 +61,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
+      <Toaster position="top-left" reverseOrder={false} />
     </div>
   );
 }

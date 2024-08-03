@@ -5,6 +5,7 @@ import InputMask from "react-input-mask";
 import { useDispatch } from "react-redux";
 import { useId, useRef } from "react";
 import { addContact } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
 
 const validationInputSchema = Yup.object().shape({
   name: Yup.string()
@@ -36,7 +37,11 @@ export default function ContactForm() {
         name: values.name,
         number: values.number,
       })
-    );
+    )
+      .unwrap()
+      .then(() => toast.success("Contact successfully added"))
+      .catch(() => toast.error("Failed to add contact"));
+    actions.setSubmitting(false);
     actions.resetForm();
   };
 
@@ -46,44 +51,50 @@ export default function ContactForm() {
       validationSchema={validationInputSchema}
       onSubmit={handleSubmit}
     >
-      <Form className={css.formWrapper}>
-        <div className={css.container}>
-          <label className={css.label} htmlFor={nameFormId}>
-            Name
-          </label>
-          <Field
-            className={css.input}
-            id={nameFormId}
-            type="text"
-            name="name"
-          />
-          <ErrorMessage name="name" component="span" />
-        </div>
-        <div className={css.container}>
-          <label className={css.label} htmlFor={numberFormId}>
-            Number
-          </label>
-          <Field
-            className={css.input}
-            id={numberFormId}
-            type="number"
-            name="number"
+      {({ isSubmitting }) => (
+        <Form className={css.formWrapper}>
+          <div className={css.container}>
+            <label className={css.label} htmlFor={nameFormId}>
+              Name
+            </label>
+            <Field
+              className={css.input}
+              id={nameFormId}
+              type="text"
+              name="name"
+            />
+            <ErrorMessage name="name" component="span" />
+          </div>
+          <div className={css.container}>
+            <label className={css.label} htmlFor={numberFormId}>
+              Number
+            </label>
+            <Field
+              className={css.input}
+              id={numberFormId}
+              type="number"
+              name="number"
+            >
+              {({ field }) => (
+                <InputWithMask
+                  className={css.inputMask}
+                  field={field}
+                  mask="999-99-99"
+                  maskChar={null}
+                />
+              )}
+            </Field>
+            <ErrorMessage name="number" component="span" />
+          </div>
+          <button
+            className={css.formButton}
+            type="submit"
+            disabled={isSubmitting}
           >
-            {({ field }) => (
-              <InputWithMask
-                className={css.inputMask}
-                field={field}
-                mask="999-99-99"
-                maskChar={null}
-              />
-            )}
-          </Field>
-          <ErrorMessage name="number" component="span" />
-        </div>
-        <button className={css.formButton} type="submit">
-          Add Contact
-        </button>
-      </Form>
+            Add Contact
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 }

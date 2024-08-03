@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectContacts,
   selectIsLoading,
   selectError,
+  selectFilteredContacts,
 } from "../../redux/contacts/selectors";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { useEffect } from "react";
@@ -15,7 +15,7 @@ import css from "./ContactsPage.module.css";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const isLoggedIn = useSelector(selectIsLoggedIn);

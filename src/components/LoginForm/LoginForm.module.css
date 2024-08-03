@@ -37,3 +37,8 @@ label {
   font-weight: 600;
   color: white;
 }
+
+.errorMessage {
+  color: red;
+  font-size: 21px;
+}

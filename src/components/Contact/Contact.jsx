@@ -3,12 +3,16 @@ import css from "./Contact.module.css";
 import { BsPersonFill } from "react-icons/bs";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { deleteContact } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleOnDelete = (contactId) => {
-    dispatch(deleteContact(contactId));
+    dispatch(deleteContact(contactId))
+      .unwrap()
+      .then(() => toast.success("contact successfully deleted"))
+      .catch(() => toast.error("contact cannot be deleted"));
   };
 
   return (

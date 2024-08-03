@@ -19,7 +19,10 @@ const validationInputSchema = Yup.object().shape({
     .min(6, "Name must be at least 2 characters long")
     .max(50, "Name must be less than 50 characters long")
     .matches(/^[a-zA-Z\s]+$/, "Name can only contain letters and spaces"),
-  email: Yup.string().email("Invalid email address").required("Required"),
+  email: Yup.string()
+    .trim()
+    .email("Invalid email address")
+    .required("Required"),
   password: Yup.string()
     .trim()
     .required("Required")
@@ -62,7 +65,9 @@ const RegistrationForm = () => {
         {({ isSubmitting, errors, touched }) => (
           <Form>
             <div className={css.inputFormRegistration}>
-              <label htmlFor={nameId}>Name: </label>
+              <label htmlFor={nameId} className={css.labelRegistr}>
+                Name:{" "}
+              </label>
               <Field
                 type="text"
                 name="name"
@@ -83,7 +88,9 @@ const RegistrationForm = () => {
               )}
             </div>
             <div className={css.inputFormRegistration}>
-              <label htmlFor={emailId}>Email: </label>
+              <label htmlFor={emailId} className={css.labelRegistr}>
+                Email:{" "}
+              </label>
               <Field
                 type="email"
                 name="email"
@@ -104,7 +111,9 @@ const RegistrationForm = () => {
               )}
             </div>
             <div className={css.inputFormRegistration}>
-              <label htmlFor={passwordId}>Password: </label>
+              <label htmlFor={passwordId} className={css.labelRegistr}>
+                Password:{" "}
+              </label>
               <Field
                 type="password"
                 name="password"
@@ -125,7 +134,9 @@ const RegistrationForm = () => {
               )}
             </div>
             <div className={css.inputFormRegistration}>
-              <label htmlFor={confirmPasswordId}>Confirm Password: </label>
+              <label htmlFor={confirmPasswordId} className={css.labelRegistr}>
+                Confirm Password:{" "}
+              </label>
               <Field
                 type="password"
                 name="confirmPassword"
