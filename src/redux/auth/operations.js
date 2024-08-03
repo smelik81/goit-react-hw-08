@@ -44,3 +44,28 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     thunkAPI.rejectWithValue(error.message);
   }
 });
+
+// Оновлення та збереження user
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const { auth } = thunkAPI.getState();
+    setAuthToken(auth.token);
+    try {
+      const response = await axios.get("/users/current");
+      if (response.data.token) {
+        setAuthToken(response.data.token);
+      }
+      return response.data;
+    } catch (error) {
+      clearAuthToken();
+      thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const { auth } = thunkAPI.getState();
+      return auth.token !== null;
+    },
+  }
+);

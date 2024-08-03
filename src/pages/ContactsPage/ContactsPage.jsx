@@ -32,7 +32,11 @@ const ContactsPage = () => {
 
   return (
     <>
-      {isLoading && <Spiner />}
+      {isLoading && (
+        <div className={css.spinerBlock}>
+          <Spiner />
+        </div>
+      )}
       {!isLoading && (
         <div className={css.content}>
           <div className={css.wrapperContactFormFilter}>

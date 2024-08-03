@@ -12,3 +12,9 @@
   gap: 15px;
   width: 230px;
 }
+
+.spinerBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
