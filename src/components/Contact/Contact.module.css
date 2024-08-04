@@ -19,12 +19,12 @@ p {
   margin: 0;
 }
 
-.buttonContact {
+.buttonDelete {
   background-color: #b1acac73;
   color: black;
   border-radius: 8px;
   border: 1px solid gray;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 .contactPhone,
