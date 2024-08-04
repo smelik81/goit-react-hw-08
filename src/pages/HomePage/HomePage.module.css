@@ -1,6 +1,9 @@
 .container {
   text-align: center;
   display: block;
+  overflow: hidden;
+  position: relative;
+  height: 160px;
 }
 
 .titleHome,
@@ -15,6 +18,9 @@
   background-color: #204136;
   width: auto;
   display: block;
+  /*  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%; */
   animation: marqueeHome 12s linear infinite;
 }
 
@@ -22,6 +28,9 @@
   background-color: brown;
   width: auto;
   display: block;
+  /*  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%; */
   animation: marqueeApp 12s linear infinite;
 }
 
@@ -45,6 +54,6 @@
     transform: translateX(-100%) rotate(0deg);
   }
   100% {
-    transform: translateX(100%) rotate(4deg);
+    transform: translateX(100%) rotate(3deg);
   }
 }

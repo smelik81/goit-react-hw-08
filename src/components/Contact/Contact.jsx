@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import EditContactModal from "../EditContactModal/EditContactModal";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { CiEdit } from "react-icons/ci";
 
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
@@ -34,26 +36,34 @@ const Contact = ({ id, name, number }) => {
 
   return (
     <div className={css.container}>
-      <li>
-        <div className={css.contactcontactInfo}>
-          <BsPersonFill size={20} />
-          <h2 className={css.h2}>{name}</h2>
-        </div>
-        <div className={css.contactPhone}>
-          <BsFillTelephoneFill size={20} />
-          <p className={css.p}>{number}</p>
-        </div>
-      </li>
-      <button
-        type="button"
-        className={css.buttonDelete}
-        onClick={modalDeleteOpen}
-      >
-        Delete
-      </button>
-      <button type="button" className={css.buttonEdit} onClick={modalEditOpen}>
-        Edit
-      </button>
+      <div>
+        <li>
+          <div className={css.contactcontactInfo}>
+            <BsPersonFill size={20} />
+            <h2 className={css.h2}>{name}</h2>
+          </div>
+          <div className={css.contactPhone}>
+            <BsFillTelephoneFill size={20} />
+            <p className={css.p}>{number}</p>
+          </div>
+        </li>
+      </div>
+      <div className={css.btnBlock}>
+        <button
+          type="button"
+          className={css.buttonDelete}
+          onClick={modalDeleteOpen}
+        >
+          <AiTwotoneDelete size="18px" />
+        </button>
+        <button
+          type="button"
+          className={css.buttonEdit}
+          onClick={modalEditOpen}
+        >
+          <CiEdit size="18px" />
+        </button>
+      </div>
       <div>
         {isDeleteModalOpen && (
           <Modal

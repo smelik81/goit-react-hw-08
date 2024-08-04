@@ -47,8 +47,8 @@ const contactSlice = createSlice({
       .addCase(addContact.rejected, handleRejected)
       .addCase(updateContact.pending, handlePending)
       .addCase(updateContact.fulfilled, (state, { payload }) => {
-        state.items = state.items.map((item) =>
-          item.id === payload.id ? payload : item
+        state.items = state.items.map((contact) =>
+          contact.id === payload.id ? payload : contact
         );
         state.loading = false;
       })

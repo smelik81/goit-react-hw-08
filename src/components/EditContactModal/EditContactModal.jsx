@@ -40,10 +40,10 @@ const EditContactModal = ({ isOpen, onClose, contactId, initialData }) => {
   return (
     <div className={css.containerOverlay}>
       <div className={css.containerWrapper}>
-        <h3>Edit Contact Form</h3>
+        <h3 className={css.editTitle}>Edit Contact Form</h3>
         <form className={css.form} onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor={nameId}>
+          <div className={css.formContainer}>
+            <label htmlFor={nameId} className={css.label}>
               Name:
               <input
                 id={nameId}
@@ -51,6 +51,7 @@ const EditContactModal = ({ isOpen, onClose, contactId, initialData }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                className={css.editInput}
               />
             </label>
           </div>
@@ -63,10 +64,18 @@ const EditContactModal = ({ isOpen, onClose, contactId, initialData }) => {
                 name="number"
                 value={formData.number}
                 onChange={handleChange}
+                className={css.editInput}
               />
             </label>
           </div>
-          <button type="button" onClick={onClose}></button>
+          <div className={css.btnEditWrapper}>
+            <button type="submit" className={css.btnChange}>
+              Change
+            </button>
+            <button type="button" onClick={onClose} className={css.btnClose}>
+              Close
+            </button>
+          </div>
         </form>
       </div>
     </div>

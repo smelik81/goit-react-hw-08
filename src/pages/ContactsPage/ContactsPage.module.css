@@ -4,6 +4,7 @@
   padding: 6px;
   display: flex;
   margin-top: 130px;
+  gap: 25px;
 }
 
 .wrapperContactFormFilter {

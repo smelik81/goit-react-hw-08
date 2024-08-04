@@ -5,7 +5,6 @@ import css from "./UserMenu.module.css";
 
 const UserMenu = () => {
   const user = useSelector(selectUser);
-  console.log(user);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
